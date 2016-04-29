@@ -10,12 +10,13 @@ table, td {
 table{
     width: 300px;
     height: 300px;
-	    margin: auto;
+    margin: auto;
 }
 p{
     font-size: 25px;
     color: blue;
-	margin-top: 10px;
+     margin-top: 10px;
+     text-align: center;
 }
 
 button{
@@ -28,7 +29,7 @@ button{
 </head>
 <body onload="onLoad()">
 
-<p style="font-size: 45px; color: red; text-align:center; margin-top: 10px;    margin-bottom: 10px;">Odd one out! </p>
+<p style="font-size: 30px; color: red; text-align:center; margin-top: 10px;    margin-bottom: 10px;">Odd one out! </p>
 <p>Select the cell having different shade from others</p>
 <div id="containerDiv"></div>
 <!--
@@ -63,7 +64,7 @@ var initialCols = 2, timeLeft = 60; var timeEnded = false;
 //var diffShade = ["#1ACCFF66", "#1A330099", "#1AFF0066", "#1A33CC00", "#1AFF6600", "#1AFFFF33"];
 //var diffShade = ["#CCFF99","#336699", "#FF6666","#99CC00", "#FFCC00", "#FFFF99"]
 var baseColor = ["#2B1B17", "#000080", "#C2DFFF", "#5E7D7E", "#6CC417", "#F87217", "#810541"];
-var diffShade = ["#3B3131","#151B8D", "#C6DEFF","#4C787E", "#4CC417", "#F87431", "#7D0541"];
+var diffShade = ["#3B3131","#151B8D", "#c2e4ff","#4C787E", "#4CC417", "#F87431", "#7D0541"];
 
 
 function onLoad(){
