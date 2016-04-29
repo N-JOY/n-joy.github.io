@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<style>
+table, td {
+    border: 1px solid black;
+}
+table{
+    width: 300px;
+    height: 300px;
+	    margin: auto;
+}
+p{
+    font-size: 25px;
+    color: blue;
+	margin-top: 10px;
+}
+
+button{
+    padding: 10px;
+    font-size: 45px;
+    margin: auto;
+    color: blue;
+}
+</style>
+</head>
+<body onload="onLoad()">
+
+<p style="font-size: 45px; color: red; text-align:center; margin-top: 10px;    margin-bottom: 10px;">Odd one out! </p>
+<p>Select the cell having different shade from others</p>
+<div id="containerDiv"></div>
+<!--
+<table id="myTable">
+  <tr>
+    <td>Row1 cell1</td>
+    <td>Row1 cell2</td>
+  </tr>
+  <tr>
+    <td>Row2 cell1</td>
+    <td>Row2 cell2</td>
+  </tr>
+  <tr>
+    <td>Row3 cell1</td>
+    <td>Row3 cell2</td>
+  </tr>
+</table>
+<br>
+-->
+
+</br> </br>
+<div style="
+    text-align: center;
+">
+<button id="button"></button></div>
+
+<script>
+
+var points = 0;;
+var initialCols = 2, timeLeft = 60; var timeEnded = false;
+//var baseColor = ["#CCFF66", "#330099", "#FF0066", "#33CC00", "#FF6600", "#FFFF33"];
+//var diffShade = ["#1ACCFF66", "#1A330099", "#1AFF0066", "#1A33CC00", "#1AFF6600", "#1AFFFF33"];
+//var diffShade = ["#CCFF99","#336699", "#FF6666","#99CC00", "#FFCC00", "#FFFF99"]
+var baseColor = ["#2B1B17", "#000080", "#C2DFFF", "#5E7D7E", "#6CC417", "#F87217", "#810541"];
+var diffShade = ["#3B3131","#151B8D", "#C6DEFF","#4C787E", "#4CC417", "#F87431", "#7D0541"];
+
+
+function onLoad(){
+
+	
+	timer();
+	addTable(2);
+}
+
+function randomRange(min, max) {
+	var random = Math.floor(Math.random() * (max - min )) + min;
+	console.log(random);
+  return random;
+}
+
+function myFunction() {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "NEW CELL1";
+    cell2.innerHTML = "NEW CELL2";
+}
+
+function addTable(noOfCols) {
+    //var noOfCols = 
+    var myTableDiv = document.getElementById("containerDiv");
+    myTableDiv.innerHTML = "";
+	var diffCell = randomRange(0, (noOfCols * noOfCols));//
+    var table = document.createElement('TABLE');
+    table.border='1';
+   
+    var tableBody = document.createElement('TBODY');
+    table.appendChild(tableBody);
+    
+	var randomColor = randomRange(0, 6);
+    for (var i=0; i<noOfCols; i++){
+       var tr = document.createElement('TR');
+       tableBody.appendChild(tr);
+      
+       for (var j=0; j<noOfCols; j++){
+           var td = document.createElement('TD');
+           //td.width='75';
+           //td.appendChild(document.createTextNode("Cell " + i + "," + j));
+		   td.style.background = baseColor[randomColor];
+		   if(diffCell == ((i * noOfCols)+j)){
+			td.addEventListener("click", clickCell);
+			td.style.background = diffShade[randomColor];
+		   }
+		   
+           tr.appendChild(td);
+       }
+    }
+    myTableDiv.appendChild(table);
+   
+}
+
+function clickCell(e) {
+	
+	if(timeEnded == false){
+		points = points + 1;
+		initialCols = initialCols + 1;
+		addTable(initialCols);
+	}
+	
+}
+
+function timer() {
+  document.getElementById('button').innerHTML = timeLeft +  "Secs";
+  timeLeft--;
+  if (timeLeft < 0) {
+  
+		if(points < 5){
+			if(confirm("You scored: " +points+"\n \nYou can do better! Try again?")) {
+					location.reload();
+			}
+		} else if(points < 10){
+			if(confirm("You scored: " +points+"\n \nIt was Good! Try again?")) {
+					location.reload();
+			}
+		} else if(points < 15){
+			if(confirm("You scored: " +points+"\n \nWOW! Try again?")) {
+					location.reload();
+			}
+		}
+    //alert("Your Points:" + points);
+	
+  }
+  else {
+    setTimeout(timer, 1000);
+  }
+}
+</script>
+
+</body>
+</html>
