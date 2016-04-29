@@ -10,13 +10,13 @@ table, td {
 table{
     width: 300px;
     height: 300px;
-    margin: auto;
+	    margin: auto;
 }
 p{
     font-size: 25px;
     color: blue;
-     margin-top: 10px;
-     text-align: center;
+	margin-top: 10px;
+	text-align: center;
 }
 
 button{
@@ -27,7 +27,7 @@ button{
 }
 </style>
 </head>
-<body onload="onLoad()">
+<body onload="onLoad()" style="background-color: mistyrose;">
 
 <p style="font-size: 30px; color: red; text-align:center; margin-top: 10px;    margin-bottom: 10px;">Odd one out! </p>
 <p>Select the cell having different shade from others</p>
@@ -137,15 +137,23 @@ function timer() {
   timeLeft--;
   if (timeLeft < 0) {
   
+		var myTableDiv = document.getElementById("containerDiv");
+		myTableDiv.innerHTML = "";
 		if(points < 5){
+			var score = "<p>You scored: " +points+"\n \nYou can do better!</p>"
+			myTableDiv.innerHTML = score;
 			if(confirm("You scored: " +points+"\n \nYou can do better! Try again?")) {
 					location.reload();
 			}
 		} else if(points < 10){
+			var score = "<p>You scored: " +points+"\n \nIt was Good!</p>"
+			myTableDiv.innerHTML = score;
 			if(confirm("You scored: " +points+"\n \nIt was Good! Try again?")) {
 					location.reload();
 			}
 		} else if(points < 15){
+			var score = "<p>You scored: " +points+"\n \nWOW! </p>"
+			myTableDiv.innerHTML = score;
 			if(confirm("You scored: " +points+"\n \nWOW! Try again?")) {
 					location.reload();
 			}
